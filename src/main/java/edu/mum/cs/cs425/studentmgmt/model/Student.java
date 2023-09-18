@@ -3,8 +3,6 @@ package edu.mum.cs.cs425.studentmgmt.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -31,10 +29,22 @@ public class Student {
 
     private double cgpa;
 
-    @Temporal(TemporalType.DATE)
     private  LocalDate dateOfEnrollment;
 
-//    @OneToOne
-//    @JoinColumn(name = "transcript_id")
-//    private  Transcript transcript;
+    public Student(String studentNumber, String firstName, String middleName, String lastName, double cgpa, LocalDate dateOfEnrollment) {
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "transcript_id")
+    private  Transcript transcript;
+
+    @ManyToOne
+    @JoinTable(name = "classroom_id")
+    private  Classroom classroom;
 }

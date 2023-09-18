@@ -1,16 +1,22 @@
 package edu.mum.cs.cs425.studentmgmt.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transcript {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transcriptId;
     private String degreeTitle;
 
-    @OneToOne(mappedBy = "transcript")
-    private Student student;
-
+    public Transcript(String degreeTitle) {
+        this.degreeTitle = degreeTitle;
+    }
 }

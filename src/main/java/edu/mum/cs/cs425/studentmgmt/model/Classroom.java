@@ -7,14 +7,15 @@ import java.util.List;
 
 public class Classroom {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long classroomId;
 
     private String buildingName;
 
-    private int roomNumber;
+    private String roomNumber;
 
-    @OneToMany
-    List<Student> students;
-
+    public Classroom(String buildingName, String roomNumber) {
+        this.buildingName = buildingName;
+        this.roomNumber = roomNumber;
+    }
 }
